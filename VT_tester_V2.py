@@ -28,7 +28,7 @@ def consultar_viagem():
     options = webdriver.ChromeOptions()
     options.add_experimental_option('excludeSwitches', ['enable-logging'])
     options.binary_MespJc = brave_path
-    driver = webdriver.Chrome(chrome_options=options, executable_path = r'D:\00 - Scripts\Python\Scripts\Teste VT\chromedriver.exe')
+    driver = webdriver.Chrome(chrome_options=options, executable_path = r'chromedriver.exe')
     driver.get(link)
     
     numerador = 0
@@ -107,10 +107,6 @@ def consultar_viagem():
                 df['Rota Ida'].loc[i] = buzu[indice_menor]
                 # Colocar no dataframe a menor quantidade de linhas
                 df['Número de viagens Ida'].loc[i] = min(linhas)
-        
-############################################################################################################################################################################################
-
-############################################################################################################################################################################################
 
         driver.find_element_by_xpath('//*[@id="sb_ifc50"]/input').send_keys(Keys.CONTROL, 'a', Keys.DELETE)
         time.sleep(0.5)
@@ -179,7 +175,7 @@ def consultar_viagem():
                 df['Rota Volta'].loc[i] = buzu[indice_menor]
                 # Colocar no dataframe a menor quantidade de linhas
                 df['Número de viagens Volta'].loc[i] = min(linhas)
-        df.to_excel(r'D:\00 - Scripts\Python\Scripts\Teste VT\Arquivos\Consulta_VT.xlsx', index=False)
+        df.to_excel(r'Consulta_VT.xlsx', index=False)
         print(df['Número de viagens Ida'][i], ' - ', df['Rota Ida'][i])
         print(df['Número de viagens Volta'][i],' - ', df['Rota Volta'][i])
         numerador += 1
